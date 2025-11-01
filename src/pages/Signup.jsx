@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from '../context/AuthContext';
+// import { useAuth } from '../context/AuthContext';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { signup } = useAuth();
+  // const { signup } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,21 +22,8 @@ export default function Signup() {
       return;
     }
     
-    setIsLoading(true);
-    
-    try {
-      const result = await signup(email, password, name);
-      if (result.success) {
-        navigate('/app');
-      } else {
-        setError(result.error || 'Failed to create account');
-      }
-    } catch (err) {
-      setError('An unexpected error occurred');
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
+    // Temporary bypass: skip backend signup and navigate directly
+    navigate('/app');
   };
 
   return (
