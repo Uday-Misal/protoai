@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
-// API base URL from environment variables
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-
+//
+const API_URL =
+  process.env.REACT_APP_API_URL
+  || (process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api');
 
 const AuthContext = createContext(null);
 
