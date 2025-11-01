@@ -13,8 +13,14 @@ const app = express();
 
 // ✅ Allow frontend access
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "*"
+    origin: [
+        "http://localhost:5173",         // local frontend (Vite dev)
+        "https://protoai1.vercel.app"    // deployed frontend on Vercel
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
+
 
 // ✅ Increase JSON payload size
 app.use(express.json({ limit: "50mb" }));
